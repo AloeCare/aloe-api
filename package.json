@@ -1,0 +1,12 @@
+{
+  "name": "aloe-api",
+  "version": "1.0.0",
+  "description": "Aloe REST Service",
+  "main": "app.js",
+  "author": "Linked Ladies",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mysql": "^2.11.1"
+  }
+}
