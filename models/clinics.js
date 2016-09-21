@@ -24,9 +24,10 @@ function Clinics() {
       con.query('INSERT INTO clinics SET ?', clinic, function(err, results) {
         con.release();
         if (err) {
-          res.send({message: 'Clinic creation failed'});
+          res.send({message: 'Clinic creation failed', err: err});
         } else {
-          res.send({message: 'Clinic created successfully'});
+          clinic.id = results.insertId;
+          res.send({message: 'Clinic created successfully', clinic: clinic});
         }
       });
     });
@@ -37,9 +38,9 @@ function Clinics() {
       con.query('UPDATE clinics SET ? WHERE id = ?', [clinic, clinic.id], function(err, results) {
         con.release();
         if (err) {
-          res.send({message: 'Clinic update failed'});
+          res.send({message: 'Clinic update failed', err: err});
         } else {
-          res.send({message: 'Clinic updated successfully'});
+          res.send({message: 'Clinic updated successfully', clinic: clinic});
         }
       });
     });
