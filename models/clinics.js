@@ -19,6 +19,15 @@ function Clinics() {
     });
   };
 
+  this.getPatients = function(id, res) {
+    connection.acquire(function(err, con) {
+      con.query('SELECT * FROM patients WHERE clinic_id = ?', [id], function(err, results) {
+        con.release();
+        res.send(results);
+      });
+    });
+  };
+
   this.create = function(clinic, res) {
     connection.acquire(function(err, con) {
       con.query('INSERT INTO clinics SET ?', clinic, function(err, results) {

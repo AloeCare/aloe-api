@@ -34,4 +34,10 @@ clinicsRouter.route('/:clinicId')
 });
 
 
+clinicsRouter.route('/:clinicId/patients')
+.get(function (req, res, next) {
+  Clinics.getPatients(req.params.clinicId, res);
+})
+
+
 module.exports = clinicsRouter
