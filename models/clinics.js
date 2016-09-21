@@ -51,7 +51,7 @@ function Clinics() {
       con.query('DELETE FROM clinics', function(err, results) {
         con.release();
         if (err) {
-          res.send({message: 'Clinic deletions failed'});
+          res.send({message: 'Clinic deletions failed', err: err});
         } else {
           res.send({message: 'All clinics deleted successfully'});
         }
@@ -64,9 +64,9 @@ function Clinics() {
       con.query('DELETE FROM clinics WHERE id = ?', [id], function(err, results) {
         con.release();
         if (err) {
-          res.send({message: 'Clinic deletion failed'});
+          res.send({message: 'Clinic deletion failed with id = ' + id, err: err});
         } else {
-          res.send({message: 'Clinic deleted successfully'});
+          res.send({message: 'Clinic deleted successfully with id = ' + id});
         }
       });
     });

@@ -12,10 +12,11 @@ app.use(function (req, res, next) {
 });
 
 var connection = require('./connection');
-var routes = require('./routes');
+var clinicsRouter = require('./routes/clinicsRouter');
+
+app.use('/clinics', clinicsRouter);
 
 connection.init();
-routes.configure(app);
 
 var server = app.listen(8000, function() {
   console.log('Server listening on port ' + server.address().port);
