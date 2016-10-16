@@ -12,16 +12,16 @@ function Clinics() {
 
   this.getClinic = function(id, res) {
     connection.acquire(function(err, con) {
-      con.query('SELECT * FROM clinics WHERE id = ?', [id], function(err, results) {
+      con.query('SELECT c.name AS clinicName, p.id AS patientId, p.firstName AS patientFirstName, p.lastName AS patientLastName FROM clinics AS c JOIN patients AS p WHERE c.id = ?', [id], function(err, results) {
         con.release();
-        res.send(results[0]);
+        res.send(results);
       });
     });
   };
 
   this.getPatients = function(id, res) {
     connection.acquire(function(err, con) {
-      con.query('SELECT * FROM patients WHERE clinic_id = ?', [id], function(err, results) {
+      con.query('SELECT * FROM patients WHERE clinicId = ?', [id], function(err, results) {
         con.release();
         res.send(results);
       });
